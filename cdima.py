@@ -60,3 +60,25 @@ r = find_root(a, b)
 root = tuple(r)
 print(solution)
 print(root)
+
+# animation
+fig, ax = plt.subplots()
+(line,) = ax.plot([], [], "b-")
+ax.set_xlim(min(x), max(x))
+ax.set_ylim(min(y), max(y))
+ax.set_xlabel("x")
+ax.set_ylabel("y")
+
+
+def init():
+    line.set_data([], [])
+    return (line,)
+
+
+def update(frame):
+    line.set_data(x[:frame], y[:frame])
+    return (line,)
+
+
+ani = animation.FuncAnimation(fig, update, frames=len(t), init_func=init, blit=True)
+plt.show()
