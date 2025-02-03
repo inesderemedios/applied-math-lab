@@ -48,10 +48,10 @@ def nullclines(a, b, x_range):
     return x, nullcline1, nullcline2
 
 
-a = 10
-b = 6
+a = 8
+b = 3
 t_span = (0, 100)
-t_eval = np.linspace(0, 10, 100)
+t_eval = np.linspace(0, 10, 1000)
 x0, y0 = 0, 0
 t, x, y = trajectory(a, b, x0, y0, t_span, t_eval)
 x_range = (0, 5)
@@ -80,5 +80,17 @@ def update(frame):
     return (line,)
 
 
-ani = animation.FuncAnimation(fig, update, frames=len(t), init_func=init, blit=True)
+ani = animation.FuncAnimation(
+    fig, update, frames=len(t), init_func=init, blit=True, interval=1
+)
+# Plot fixed point
+fixed_point = ax.plot(root[0], root[1], "ro", label="Fixed Point")
+
+# Plot nullclines
+x_null, nullcline1, nullcline2 = nullclines(a, b, x_range)
+nullcline1_line = ax.plot(x_null, nullcline1, "g--", label="dx/dt=0 Nullcline")
+nullcline2_line = ax.plot(x_null, nullcline2, "m--", label="dy/dt=0 Nullcline")
+
+# legend
+ax.legend()
 plt.show()
