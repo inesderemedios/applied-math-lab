@@ -26,8 +26,8 @@ def gierer_meinhard_1d(t, uv, a=0.4, d=20, gamma=1, b=1):
     # Implement the rest of ODEs
     f = a - b * u + (u**2 / v)
     g = u**2 - v
-    dudt = lu + gamma * f
-    dvdt = d + gamma * g
+    dudt = 1 * lu + gamma * f  # 1=D1
+    dvdt = d + gamma * g  # d >0, no matter what value
     return np.array([dudt, dvdt])
 
 
