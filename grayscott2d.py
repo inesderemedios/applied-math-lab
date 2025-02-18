@@ -172,16 +172,8 @@ def run_simulation(
     k = 0.059
     boundary_conditions = "periodic"
 
-    # Pause parameter - Will be toggled by pressing the space bar (see on_keypress)
     pause = False
-
-    # Drawing parameter - Will be toggled by clicking on the plot (see on_click, on_release)
     drawing = False
-
-    # ------------------------------------------------------------------------#
-    # INITIALIZE THE PLOT
-    # ------------------------------------------------------------------------#
-
     # Initialize the (u, v) = (1, 0)
     uv = np.ones((2, length, length), dtype=np.float32)
     uv[1] = 0
@@ -196,17 +188,7 @@ def run_simulation(
     ax_uv.axis("off")  # Turn off the axis (the grid and numbers)
     im = ax_uv.imshow(uv[1], cmap=cmap, interpolation="bilinear", vmin=0, vmax=1.0)
 
-    # ------------------------------------------------------------------------#
-    # ANIMATION
-    # ------------------------------------------------------------------------#
-
     def update_frame(_):
-        """This function is called by the animation module at each frame.
-        It updates the u and v fields based on the Gray-Scott model equations.
-        Returns the updated elements of the plot. This in combination with the
-        blit=True parameter in FuncAnimation will only update the changed elements
-        of the plot, making the animation faster.
-        """
         # Access variables from the outer scope
         nonlocal pause, uv, d1, d2, f, k, boundary_conditions
         if pause:
