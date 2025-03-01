@@ -49,11 +49,11 @@ def run_simulation():
     # ------------------------------------------------------------------------#
     # PARAMETERS
     # ------------------------------------------------------------------------#
-    coupling_strength = 1.0  # K
-    max_k = 7.0  # Maximum K allowed in the slider
+    coupling_strength = 7.0  # K
+    max_k = 10.0  # Maximum K allowed in the slider
     num_oscillators = 100  # Number of oscillators
     max_oscillators = 500  # Maximum number of oscillators allowed in the slider
-    sigma = 0.0  # Standard deviation of the natural frequencies
+    sigma = 1.0  # Standard deviation of the natural frequencies
     dt = 0.01  # Time step
 
     # Initialize oscillators (phase and natural frequency)
