@@ -65,6 +65,7 @@ def kuramoto_critical_coupling(k: np.ndarray, sigma: float = 1.0) -> np.ndarray:
     """
     # Compute the critical coupling strength kc
     kc = 2 * sigma * np.sqrt(2 / np.pi)
+    print(f"the critical value of K_c is: {kc}")
     r = np.zeros_like(k)
     r[k >= kc] = np.sqrt(1 - (kc / k[k >= kc]) ** 2)
     # Given an array of k, compute the theoretical order parameter
@@ -79,7 +80,7 @@ def draw_kuramoto_diagram(
     t_end: float = 100.0,
     kmin: float = 0.0,
     kmax: float = 5.0,
-    knum: int = 7,
+    knum: int = 200,  # task 2 requires 20 values
 ):
     """
     Draw the Kuramoto diagram, showing the order parameter as a function
@@ -108,7 +109,7 @@ def draw_kuramoto_diagram(
     t_span = (0, t_end)
     t_eval = np.arange(0, t_end, dt)
     # We will take the last X% of the time points to compute the order parameter
-    idx_end = int(len(t_eval) * 0.25)
+    idx_end = -300
     t_eval = t_eval[-idx_end:]
     # Initialize the coupling strength and the empirical order parameter lists
     ls_k = np.linspace(kmin, kmax, knum)
